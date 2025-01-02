@@ -38,3 +38,4 @@ seuratObjecth5ad = readRDS(paste0(h5adFileName, ".rds"))
 gene_List <- rownames(seuratObjecth5ad@assays$RNA@counts)
 print(gene_List)
 
+print(Idents(seuratObjecth5ad))
