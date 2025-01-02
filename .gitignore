@@ -1,11 +1,4 @@
-# Ignore all files in Sample1
-Sample1/*
-
-# Allow specific file types or smaller files
-!Sample1/*.ipynb  # Keep Jupyter notebooks
-!Sample1/*.rds    # Keep RDS files (if desired)
-
-# Specifically exclude large files
 Sample1/*.loom
 Sample1/*.pkl
 Sample1/*.h5ad
+Sample1/*.rds
