@@ -63,21 +63,21 @@ sparse_RDS <- AddMetaData(
 )
 print(unique(sparse_RDS@meta.data$treatment))
 
-seurat_obj_subset <- subset(
+sparse_RDS <- subset(
   sparse_RDS,
   subset = treatment != "FI" & treatment != "NFI"
 )
 
-table(seurat_obj_subset@meta.data$treatment)
+table(sparse_RDS@meta.data$treatment)
 
 #Save for Samap Run
-sceasy::convertFormat(seurat_obj_subset, from="seurat", to="anndata",
+sceasy::convertFormat(sparse_RDS, from="seurat", to="anndata",
                       outFile=paste0(h5adFileName, ".h5ad"))
 
 #---SAMAP RUN----
 
 #Load Samap Run
-h5adFileName = "samap_h5ad_sparse"
-sceasy::convertFormat(paste0(h5adFileName, ".h5ad"), from="anndata", to="seurat",
-                      outFile=paste0(h5adFileName, ".rds"))
-seuratObjectSparse = readRDS(paste0(h5adFileName, ".rds"))
+h5adFileNameNew = "samap_results_h5ad_sparse"
+sceasy::convertFormat(paste0(h5adFileNameNew, ".h5ad"), from="anndata", to="seurat",
+                      outFile=paste0(h5adFileNameNew, ".rds"))
+seuratObjectSparse = readRDS(paste0(h5adFileNameNew, ".rds"))
