@@ -20,7 +20,7 @@ if(install){
 
 #Convert Sparse R Object into h5ad for Samap Sparse Run
 h5adName <- "samap_adata_sparse_mouse"
-seuratObjectName <- "mouse_NMDA_MG_only.rds"
+seuratObjectName <- "mouse.rds"
 
 
 sparse_RDS <- readRDS(seuratObjectName)
