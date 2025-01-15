@@ -40,44 +40,4 @@ seuratObjecth5ad = readRDS(paste0(h5adFileName, ".rds"))
 gene_List <- rownames(seuratObjecth5ad@assays$RNA@counts)
 print(gene_List)
 
-
-
-
-#---For Sparse Data---
-
-
-
-
-
-
-#Convert Sparse R Object into h5ad for Samap Sparse Run
-h5adFileName <- "samap_adata_sparse"
-sparse_RDS <- readRDS("chMG_NMsubset.rds")
-
-#add cell type label and subset out FI and NFI
-print(sparse_RDS@active.ident)
-sparse_RDS <- AddMetaData(
-  object = sparse_RDS,
-  metadata = Idents(sparse_RDS),
-  col.name = "active_ident"
-)
-print(unique(sparse_RDS@meta.data$treatment))
-
-sparse_RDS <- subset(
-  sparse_RDS,
-  subset = treatment != "FI" & treatment != "NFI"
-)
-
-table(sparse_RDS@meta.data$treatment)
-
-#Save for Samap Run
-sceasy::convertFormat(sparse_RDS, from="seurat", to="anndata",
-                      outFile=paste0(h5adFileName, ".h5ad"))
-
-#---SAMAP RUN----
-
-#Load Samap Run
-h5adFileNameNew = "samap_results_h5ad_sparse"
-sceasy::convertFormat(paste0(h5adFileNameNew, ".h5ad"), from="anndata", to="seurat",
-                      outFile=paste0(h5adFileNameNew, ".rds"))
-seuratObjectSparse = readRDS(paste0(h5adFileNameNew, ".rds"))
+#TODO Seurat Analysis
